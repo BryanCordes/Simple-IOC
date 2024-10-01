@@ -1,5 +1,3 @@
-import { log } from 'console';
-
 class Service {
     #definition;
     #type;
@@ -32,8 +30,6 @@ class Container {
 
     #getActions;
 
-    #uuid;
-
     static get type() {
         return {
             singleton: 'singleton',
@@ -47,10 +43,6 @@ class Container {
             asSingleton: this.#asSingleton,
             asCollection: this.#asCollection
         }
-    }
-
-    get uuid() {
-        return this.#uuid;
     }
 
     get(definitionOrName) {
@@ -86,21 +78,13 @@ class Container {
         const service = new Service( definition, Container.type.transient, dependencies );
 
         if ( this.#collection.has( name ) ) {
-            log( `Adding to collection: ${name}` );
-
             this.#collection.get( name ).push( service );
         } else {
-            log( `Creating collection: ${name}` );
-
             this.#collection.set( name, [service] );
         }
-
-        log( `Uuid: ${this.uuid}` );
     }
 
     #getCollection = (name) => {
-        log( `Uuid: ${this.uuid}` );
-
         const collection = this.#collection.get( name );
         if ( !collection ) {
             return undefined;
@@ -146,28 +130,10 @@ class Container {
         return dependencies;
     }
 
-    #generateUUID() { // Public Domain/MIT
-        let d = new Date().getTime();//Timestamp
-        let d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            let r = Math.random() * 16;//random number between 0 and 16
-            if(d > 0){//Use timestamp until depleted
-                r = (d + r)%16 | 0;
-                d = Math.floor(d/16);
-            } else {//Use microseconds since page-load if supported
-                r = (d2 + r)%16 | 0;
-                d2 = Math.floor(d2/16);
-            }
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    }
-
     constructor() {
         this.#services = new Map();
         this.#collection = new Map();
         this.#singleton = new Map();
-
-        this.#uuid = this.#generateUUID();
 
         this.#getActions = new Map( [
             [Container.type.singleton, this.#getSingleton],
@@ -179,16 +145,12 @@ class Container {
 class IoC {
     static #container = new Container();
 
-    static get register() {
-        return {
-            asTransient: this.#container.register.asTransient,
-            asSingleton: this.#container.register.asSingleton,
-            asCollection: this.#container.register.asCollection
-        }
+    static get default() {
+        return this.#container;
     }
 
-    static get(definition) {
-        return this.#container.get( definition );
+    static getContainerInstance() {
+        return new Container();
     }
 }
 

@@ -25,7 +25,7 @@ class Numbers {
     }
 }
 
-IoC.register.asTransient( Numbers, ["numbers"] );
+IoC.default.register.asTransient( Numbers, ["numbers"] );
 
 export default Numbers;
 

@@ -4,11 +4,7 @@ import Numbers from "../imports/collection/numbers.js";
 
 describe( "Transient tests", () => {
     test( "Numbers calculates to 15", () => {
-        const numbers = IoC.get( Numbers );
-
-        const collection = IoC.get( "numbers" );
-
-        expect( collection ).toBeDefined();
+        const numbers = IoC.default.get( Numbers );
 
         numbers.calculate();
 

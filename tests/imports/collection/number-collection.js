@@ -4,7 +4,7 @@ import NumberB from "./number-b.js";
 import NumberC from "./number-c.js";
 import NumberD from "./number-d.js";
 
-IoC.register.asCollection( "numbers", NumberA );
-IoC.register.asCollection( "numbers", NumberB );
-IoC.register.asCollection( "numbers", NumberC );
-IoC.register.asCollection( "numbers", NumberD );
+IoC.default.register.asCollection( "numbers", NumberA );
+IoC.default.register.asCollection( "numbers", NumberB );
+IoC.default.register.asCollection( "numbers", NumberC );
+IoC.default.register.asCollection( "numbers", NumberD );

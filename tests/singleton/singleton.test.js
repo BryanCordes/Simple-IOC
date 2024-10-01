@@ -7,8 +7,8 @@ import NumberB from "../imports/singleton/number-b.js";
 
 describe( "Singleton tests", () => {
     test( "NumberA increments and NumberB has same value", () => {
-        const numberA = IoC.get( NumberA );
-        const numberB = IoC.get( NumberB );
+        const numberA = IoC.default.get( NumberA );
+        const numberB = IoC.default.get( NumberB );
 
         numberA.modify();
 
@@ -17,8 +17,8 @@ describe( "Singleton tests", () => {
     } );
 
     test( "NumberB decrements and NumberA has same value", () => {
-        const numberA = IoC.get( NumberA );
-        const numberB = IoC.get( NumberB );
+        const numberA = IoC.default.get( NumberA );
+        const numberB = IoC.default.get( NumberB );
 
         // value should be retained from last test
         // this is because IoC methods are static

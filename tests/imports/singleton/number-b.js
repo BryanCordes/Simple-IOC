@@ -17,6 +17,6 @@ class NumberB {
     }
 }
 
-IoC.register.asTransient( NumberB, [Singleton] );
+IoC.default.register.asTransient( NumberB, [Singleton] );
 
 export default NumberB;

@@ -7,8 +7,8 @@ import NumberB from "../imports/transient/number-b.js";
 
 describe( "Transient tests", () => {
     test( "NumberA increments and NumberB has default value", () => {
-        const numberA = IoC.get( NumberA );
-        const numberB = IoC.get( NumberB );
+        const numberA = IoC.default.get( NumberA );
+        const numberB = IoC.default.get( NumberB );
 
         numberA.modify();
 
@@ -17,8 +17,8 @@ describe( "Transient tests", () => {
     } );
 
     test( "NumberB decrements and NumberA has default value", () => {
-        const numberA = IoC.get( NumberA );
-        const numberB = IoC.get( NumberB );
+        const numberA = IoC.default.get( NumberA );
+        const numberB = IoC.default.get( NumberB );
 
         numberB.modify();
 

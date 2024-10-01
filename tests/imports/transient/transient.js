@@ -20,6 +20,6 @@ class Transient {
     }
 }
 
-IoC.register.asTransient( Transient, [] );
+IoC.default.register.asTransient( Transient, [] );
 
 export default Transient;

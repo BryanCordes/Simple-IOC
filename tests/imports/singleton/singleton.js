@@ -20,6 +20,6 @@ class Singleton {
     }
 }
 
-IoC.register.asSingleton( Singleton, [] );
+IoC.default.register.asSingleton( Singleton, [] );
 
 export default Singleton;
